@@ -1,31 +1,104 @@
 # AWS Multi-Tier Architecture (Terraform)
 
-This repository provisions a secure and scalable AWS multi-tier architecture:
-- Custom VPC with public and private subnets.
-- Application Load Balancer (ALB) for high availability.
-- EC2 web servers in public subnets.
-- RDS MySQL database in private subnets.
-- Security groups enforcing least privilege.
-
-## Usage:
-1. Update `variables.tf` with your AWS region, EC2 key, and DB credentials.
-2. Run:
-```bash
-terraform init
-terraform apply
-3. Access your web app via the ALB DNS name in outputs.
+This repository provisions a **secure and scalable AWS multi-tier architecture** using Terraform. It follows AWS best practices and is designed for hosting web applications with a private backend database.
 
 ---
 
-### ✅ **How to Upload**
-1. Create a GitHub repo named **`aws-multi-tier-architecture`**.
-2. Clone it locally:
-   ```bash
-   git clone https://github.com/<your-username>/aws-multi-tier-architecture.git
-3. Copy all the files/folders above into the cloned repo.
-4. Push to GitHub:
-cd aws-multi-tier-architecture
-git add .
-git commit -m "Initial commit - AWS Multi-Tier Architecture"
-git push origin main
+## 📌 Architecture Diagram
+![AWS Multi-Tier Architecture](./architecture-diagram.png)
 
+---
+
+## 🚀 Features
+- Custom **VPC** with public and private subnets across multiple Availability Zones.
+- **Application Load Balancer (ALB)** for high availability and load distribution.
+- **EC2 instances** in public subnets to serve the web application.
+- **RDS MySQL database** deployed in private subnets for secure backend data storage.
+- **Security Groups** with least privilege rules (EC2 to RDS only).
+- Modular **Terraform design** for reusability and scalability.
+
+---
+
+## 🛠️ Usage
+
+### 1️⃣ Clone Repository
+```bash
+git clone https://github.com/<your-username>/aws-multi-tier-architecture.git
+cd aws-multi-tier-architecture
+2️⃣ Update Variables
+Edit variables.tf and provide:
+
+AWS region
+
+EC2 key pair name
+
+RDS database username & password
+
+3️⃣ Deploy Infrastructure
+Initialize and apply Terraform:
+
+bash
+Copy
+Edit
+terraform init
+terraform apply
+4️⃣ Access the Application
+The output will display the ALB DNS name.
+
+Open it in your browser to access the web application.
+
+📦 Modules Included
+VPC Module: Creates VPC, subnets, internet gateway, and routing.
+
+EC2 Module: Launches EC2 instances and configures ALB.
+
+RDS Module: Deploys RDS MySQL in private subnets with secure SG rules.
+
+🔒 Security Considerations
+Database is private and inaccessible from the internet.
+
+Security groups enforce strict communication rules.
+
+Use AWS Secrets Manager or SSM Parameter Store for DB credentials in production.
+
+VPC Flow Logs and CloudWatch recommended for monitoring.
+
+🖼️ Repository Structure
+css
+Copy
+Edit
+aws-multi-tier-architecture/
+├── architecture-diagram.png
+├── main.tf
+├── variables.tf
+├── outputs.tf
+├── modules/
+│   ├── vpc/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   ├── ec2/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   └── rds/
+│       ├── main.tf
+│       ├── variables.tf
+│       └── outputs.tf
+🏷️ License
+This project is licensed under the MIT License.
+
+yaml
+Copy
+Edit
+
+---
+
+### ✅ Next Steps:
+1. Place the `architecture-diagram.png` file in the root of the repo.
+2. Replace `<your-username>` in the README with your GitHub username.
+3. Commit and push:
+```bash
+git add README.md architecture-diagram.png
+git commit -m "Added README with architecture diagram"
+git push origin main
