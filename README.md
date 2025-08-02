@@ -13,3 +13,19 @@ This repository provisions a secure and scalable AWS multi-tier architecture:
 ```bash
 terraform init
 terraform apply
+3. Access your web app via the ALB DNS name in outputs.
+
+---
+
+### ✅ **How to Upload**
+1. Create a GitHub repo named **`aws-multi-tier-architecture`**.
+2. Clone it locally:
+   ```bash
+   git clone https://github.com/<your-username>/aws-multi-tier-architecture.git
+3. Copy all the files/folders above into the cloned repo.
+4. Push to GitHub:
+cd aws-multi-tier-architecture
+git add .
+git commit -m "Initial commit - AWS Multi-Tier Architecture"
+git push origin main
+
